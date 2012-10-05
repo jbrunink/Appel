@@ -1,4 +1,1 @@
-Appel
-=====
-
-Appel IRC bot
+This code is inefficient and ugly, sorry for that! If you see some epic implementations, good chance that Kester Everts (thank you!) helped me with that, he's Java's bester coder.
