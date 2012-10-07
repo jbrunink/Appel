@@ -95,7 +95,7 @@ public class FeedDataManager implements Runnable {
                     String s = ((StudioUpstairs) umbrella.getTimer("studioupstairs")).getData();
                     if(this.StudioUpstairsData != null || !s.equalsIgnoreCase(StudioUpstairsDataOud)) { 
                             for(AppelBot o : umbrella.getBots()) {
-                                if(o.isAllowed())
+                                if(o.isAllowedToMessage())
                                     o.sendMessage("#studioupstairs", Colors.BLUE + "Studio Upstairs: " + Colors.OLIVE + s);
                             }
                         this.StudioUpstairsDataOud = s;

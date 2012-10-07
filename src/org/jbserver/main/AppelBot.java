@@ -15,7 +15,7 @@ import org.jbserver.pircbot.User;
  */
 public class AppelBot extends PircBot {
     
-    private boolean supstairspost = true;
+    private boolean bAllowedToMessage = true;
     private AppelBot _bot = this;
     private boolean running = false;
     
@@ -48,8 +48,8 @@ public class AppelBot extends PircBot {
         return "hoi";
     }
     
-    public Boolean isAllowed() {
-        return this.supstairspost;
+    public Boolean isAllowedToMessage() {
+        return this.bAllowedToMessage;
     }
     
     protected void onConnect() {
@@ -104,11 +104,11 @@ public class AppelBot extends PircBot {
                 if(o.getNick().equalsIgnoreCase(sender)) {
                     if(o.isOp() || (sender.equalsIgnoreCase(this.owner) && hostname.contains(this.ownerhost))) {
                         if(message.equalsIgnoreCase("!aan")) {
-                            this.supstairspost = true;         
+                            this.bAllowedToMessage = true;         
                             this.sendMessage(channel, "Now playing staat nu aan!");
                         }
                         if(message.equalsIgnoreCase("!uit")) {
-                            this.supstairspost = false;
+                            this.bAllowedToMessage = false;
                             this.sendMessage(channel, "Now playing staat nu uit!");
                         }
                     }                     

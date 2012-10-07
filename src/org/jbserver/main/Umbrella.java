@@ -9,10 +9,7 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.Timer;
 import java.util.concurrent.TimeUnit;
-import org.jbserver.main.feeddtypes.DrieFM;
-import org.jbserver.main.feeddtypes.ProgramInfo;
-import org.jbserver.main.feeddtypes.StudioUpstairs;
-import org.jbserver.main.feeddtypes.Veronica;
+import org.jbserver.main.feeddtypes.*;
 
 /**
  *
@@ -55,13 +52,13 @@ public class Umbrella {
     }
     
     public void initTimers() {
-        
-        
         DrieFM driefm = new DrieFM(this.ehandler);
         Veronica veronica = new Veronica();
         StudioUpstairs studioupstairs = new StudioUpstairs();
         FeedDataManager manager = new FeedDataManager(this);
         ProgramInfo pinfo = new ProgramInfo();
+        News news = new News();
+        news.addFeed("NOS", "http://");
         
         sexecutor = new CustomScheduledExecutor(1);
         
@@ -70,6 +67,7 @@ public class Umbrella {
         sexecutor.scheduleWithFixedDelay(studioupstairs, 5, 5, TimeUnit.SECONDS);
         sexecutor.scheduleWithFixedDelay(pinfo, 5, 60, TimeUnit.SECONDS);
         sexecutor.scheduleWithFixedDelay(manager, 10, 5, TimeUnit.SECONDS);
+        sexecutor.scheduleWithFixedDelay(news, 10, 5, TimeUnit.SECONDS);
         
         timers.put("driefm", driefm);             
         timers.put("veronica", veronica);  
