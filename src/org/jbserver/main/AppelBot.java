@@ -34,7 +34,7 @@ public class AppelBot extends PircBot {
         
         this.setName("Appel");
         this.changeNick("Appel");
-        this.setLogin("Banaan-ls");
+        this.setLogin("Appel");
         try {
             this.setEncoding("UTF-8");
         } catch (Exception ex) {

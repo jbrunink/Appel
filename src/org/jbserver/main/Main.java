@@ -25,7 +25,7 @@ import org.xml.sax.SAXException;
 public class Main {
     
     public static Boolean debug = true;
-    public static Boolean disablepost = true;
+    public static Boolean disablepost = false;
     
     public static Boolean isDebug() {
         return Main.debug;
@@ -46,7 +46,7 @@ public class Main {
         umbrella.initTimers();        
         umbrella.createBot("test"); AppelBot bot = umbrella.getBot("test");
         bot.setVerbose(true);
-        if(properties.getProperty("isbnc") != null ? true : false) {
+        if((properties.getProperty("isbnc") != null) && (Boolean.parseBoolean(properties.getProperty("isbnc")) != true)) {
             bot.connect(properties.getProperty("irchost"), 
                     Integer.parseInt(properties.getProperty("ircport")));
         } else {
