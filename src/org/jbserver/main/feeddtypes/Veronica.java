@@ -6,6 +6,7 @@ package org.jbserver.main.feeddtypes;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.net.URL;
 import java.util.Properties;
 import java.util.TimerTask;
 import javax.xml.parsers.DocumentBuilder;
@@ -47,7 +48,7 @@ public class Veronica implements Runnable {
         try {
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            Document feed = docBuilder.parse(this.feedurl + "?" + System.currentTimeMillis());
+            Document feed = docBuilder.parse(Utilities.getInputStream(this.feedurl + "?" + System.currentTimeMillis()));
             
             try {
                 title = null;

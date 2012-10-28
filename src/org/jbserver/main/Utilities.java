@@ -7,6 +7,7 @@ package org.jbserver.main;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStreamWriter;
+import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLConnection;
@@ -90,4 +91,13 @@ public class Utilities {
         return buffer.toString();
     }
     
+    public static InputStream getInputStream(String sURL) throws MalformedURLException, IOException
+    {
+        URL url = new URL(sURL);
+        URLConnection conn = url.openConnection();
+        conn.setConnectTimeout(5000);
+        conn.setReadTimeout(10000);
+        return conn.getInputStream();
+    }
+   
 }

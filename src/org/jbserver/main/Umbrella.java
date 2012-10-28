@@ -52,7 +52,7 @@ public class Umbrella {
     }
     
     public void initTimers() {
-        DrieFM driefm = new DrieFM(this.ehandler);
+        DrieFM driefm = new DrieFM();
         Veronica veronica = new Veronica();
         StudioUpstairs studioupstairs = new StudioUpstairs();
         FeedDataManager manager = new FeedDataManager(this);
@@ -60,7 +60,7 @@ public class Umbrella {
         News news = new News();
         news.addFeed("NOS", "http://");
         
-        sexecutor = new CustomScheduledExecutor(1);
+        sexecutor = new CustomScheduledExecutor(6);
         
         sexecutor.scheduleWithFixedDelay(driefm, 5, 5, TimeUnit.SECONDS);
         sexecutor.scheduleWithFixedDelay(veronica, 5, 5, TimeUnit.SECONDS);

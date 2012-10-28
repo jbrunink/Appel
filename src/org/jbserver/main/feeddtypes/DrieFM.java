@@ -22,12 +22,13 @@ import org.w3c.dom.Element;
  */
 public class DrieFM implements Runnable {
     
-    String title;
-    String artist;
-    String xmlurl;
+    private String title;
+    private String artist;
+    private String xmlurl;
     
-    CustomExceptionHandler ehandler;
+    private CustomExceptionHandler ehandler = new CustomExceptionHandler();
     
+    @Override
     public void run() {
         this.parse();
         if(Main.isDebug()) {
@@ -36,7 +37,7 @@ public class DrieFM implements Runnable {
         }
     }
     
-    public DrieFM(CustomExceptionHandler ehandler) {
+    public DrieFM() {
         Properties properties = new Properties();
         try {
             properties.load(new FileInputStream("./config.cfg"));
@@ -44,22 +45,14 @@ public class DrieFM implements Runnable {
             ex.printStackTrace();
         }
         this.xmlurl = properties.getProperty("driefmxmlurl");
-        this.ehandler = ehandler;      
-    }
-    
-    protected void finalize() throws Throwable {
-        System.out.println("Garbage collector has been run!");
-        super.finalize();        
+        Thread.currentThread().setUncaughtExceptionHandler(this.ehandler);   
     }
 
-    public void parse() {
-        
+    public void parse() {        
         try {
-
             DocumentBuilderFactory docBuilderFactory = DocumentBuilderFactory.newInstance();
             DocumentBuilder docBuilder = docBuilderFactory.newDocumentBuilder();
-            Document DrieFMfeed = docBuilder.parse(this.xmlurl);
-            
+            Document DrieFMfeed = docBuilder.parse(Utilities.getInputStream(this.xmlurl));            
             try {
                 title = null;
                 title = ((Element) DrieFMfeed.getElementsByTagName("Current").item(0)).getElementsByTagName("titleName").item(0).getChildNodes().item(0).getNodeValue();
@@ -82,8 +75,7 @@ public class DrieFM implements Runnable {
                 System.out.println("Geen artist in de XML gevonden!");
             } catch (Exception ex) {
                 ex.printStackTrace();
-            }
-            
+            }            
         } catch (Exception ex) {
             ex.printStackTrace();
         }

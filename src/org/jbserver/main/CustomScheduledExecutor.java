@@ -35,7 +35,7 @@ public class CustomScheduledExecutor extends ScheduledThreadPoolExecutor {
                 super();
                 this.theRunnable = theRunnable;
             }
-            
+
             public void run() {
                 try {
                     theRunnable.run();
@@ -44,7 +44,6 @@ public class CustomScheduledExecutor extends ScheduledThreadPoolExecutor {
                     e.printStackTrace();
                     //throw new RuntimeException(e);
                 }
-            }
- 
+            } 
     }   
 }
